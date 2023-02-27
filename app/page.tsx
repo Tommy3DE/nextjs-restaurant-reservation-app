@@ -1,5 +1,5 @@
 import { Inter } from "@next/font/google";
-
+import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -7,10 +7,9 @@ export default function Home() {
     <main className="bg-gray-100 min-h-screen w-screen">
       <main className="max-w-screen-2xl m-auto bg-white">
         <nav className="bg-white p-2 flex justify-between">
-          <a href="" className="font-bold text-gray-700 text-2xl">
-            {" "}
+        <Link href="/" className="font-bold text-gray-700 text-2xl">
             OpenTable{" "}
-          </a>
+          </Link>
           <div>
             <div className="flex">
               <button className="bg-blue-400 text-white border p-1 px-4 rounded mr-3">
@@ -40,6 +39,7 @@ export default function Home() {
           </div>
           <div className="py-3 px-36 mt-10 flex flex-wrap justify-center">
             <div className="w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer">
+              <Link href='/restaurant/milestones-grill'>
               <img
                 src="https://resizer.otstatic.com/v2/photos/wide-huge/2/31852905.jpg"
                 alt=""
@@ -58,6 +58,7 @@ export default function Home() {
                 </div>
                 <p className="text-sm mt-1 font-bold">Booked 3 times today</p>
               </div>
+              </Link>
             </div>
           </div>
         </main>
