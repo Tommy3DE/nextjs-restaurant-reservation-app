@@ -8,4 +8,3 @@ export default function Head() {
       </>
     )
   }
-//   const haslo = 'Kanapka2137'
