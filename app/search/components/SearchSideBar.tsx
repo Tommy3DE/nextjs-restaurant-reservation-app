@@ -1,16 +1,14 @@
+import { Cuisine, Location } from '@prisma/client'
 import React from 'react'
 
-const SearchSideBar = () => {
+const SearchSideBar = ({locations, cuisines}: {locations: Location[], cuisines: Cuisine[]}) => {
   return (
     <div className="w-1/5">
             <div className="border-b pb-4">
               <h1 className="mb-2">Region</h1>
-              <p className="font-light text-reg">Toronto</p>
-              <p className="font-light text-reg">Ottawa</p>
-              <p className="font-light text-reg">Montreal</p>
-              <p className="font-light text-reg">Hamilton</p>
-              <p className="font-light text-reg">Kingston</p>
-              <p className="font-light text-reg">Niagara</p>
+              {locations.map(location=>(
+              <p className="font-light text-reg">{location.name}</p>
+              ))}
             </div>
             <div className="border-b pb-4 mt-3">
               <h1 className="mb-2">Cuisine</h1>
