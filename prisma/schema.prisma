@@ -32,7 +32,7 @@ model Restaurant {
 enum PRICE {
   CHEAP
   REGULAR
-  EXPENSICVE
+  EXPENSIVE
 }
 
 model Item {
