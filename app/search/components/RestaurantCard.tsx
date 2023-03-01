@@ -1,4 +1,4 @@
-import { Cuisine, PRICE, Location } from "@prisma/client";
+import { Cuisine, PRICE, Location, Review } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
 import Price from "../../components/Price";
@@ -11,6 +11,7 @@ interface RestaurantProps {
   cuisine: Cuisine;
   location: Location;
   slug: string;
+  reviews: Review[]
 }
 
 const RestaurantCard = ({restaurant}: {restaurant:RestaurantProps}) => {
