@@ -3,26 +3,26 @@ import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const bearerToken = req.headers['authorization'] as string
-  const token = bearerToken.split("")[1]
+  const bearerToken = req.headers["authorization"] as string;
+  const token = bearerToken.split("")[1];
 
-  const payload = jwt.decode(token) as {email: string}
+  const payload = jwt.decode(token) as { email: string };
 
-  if(!payload.email){
+  if (!payload.email) {
     return res.status(401).json({
-      errorMessage: "Unauthorized Request"
-    })
+      errorMessage: "Unauthorized Request",
+    });
   }
 
   const user = await prisma.user.findUnique({
     where: {
-      email: payload.email
+      email: payload.email,
     },
     select: {
       id: true,
@@ -30,9 +30,21 @@ export default async function handler(
       last_name: true,
       email: true,
       city: true,
-      phone: true
-    }
-  })
+      phone: true,
+    },
+  });
 
-  return res.json({user})
+  if (!user) {
+    return res.status(401).json({
+      errorMessage: "User not found",
+    });
+  }
+
+  return res.json({
+    id: user.id,
+    firstName: user.first_name,
+    last_name: user.last_name,
+    city: user.city,
+    phone: user.phone,
+  });
 }
